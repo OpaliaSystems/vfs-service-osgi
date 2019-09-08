@@ -139,3 +139,37 @@ lazy val `vfs-backend-impl-apachevfs` =
         "org.apache.httpcomponents" % "httpclient" % "4.5.13"
       )
     )
+
+lazy val `vfs-backend-impl-hdfs` =
+  (project in file("vfs-backend-impl-hdfs"))
+    .dependsOn(`vfs-backend-api`)
+    .settings(
+
+      name := "vfs-backend-impl-hdfs",
+
+      description := "The project provides a virtual file system implementation based on Apache HDFS.",
+
+      commonSettings,
+
+      bundleSettings,
+
+      OsgiKeys.privatePackage ++= Seq(
+        "systems.opalia.service.vfs.backend.impl.*"
+      ),
+
+      OsgiKeys.importPackage ++= Seq(
+        "scala.*",
+        "com.typesafe.config.*",
+        "systems.opalia.interfaces.*",
+        "systems.opalia.service.vfs.backend.api.*"
+      ),
+
+      libraryDependencies ++= Seq(
+        "org.osgi" % "osgi.core" % "8.0.0" % "provided",
+        "org.osgi" % "org.osgi.service.component.annotations" % "1.4.0",
+        "systems.opalia" %% "interfaces" % mInterfacesVersion % "provided",
+        "systems.opalia" %% "commons" % mCommonsVersion excludeAll (exclusionRules: _*),
+        "org.apache.hadoop" % "hadoop-common" % "3.3.0",
+        "org.apache.hadoop" % "hadoop-hdfs" % "3.3.0"
+      )
+    )
