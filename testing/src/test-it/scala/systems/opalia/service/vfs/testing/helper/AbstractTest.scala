@@ -53,6 +53,7 @@ abstract class AbstractTest
     val builder =
       BootloaderBuilder.newBootloaderBuilder(config)
         .withCacheDirectory(testPath.resolve("felix-cache").normalize())
+        .withBundle("org.osgi" % "org.osgi.service.log" % "1.5.0")
         .withBundle("org.osgi" % "org.osgi.util.tracker" % "1.5.2")
         .withBundle("org.osgi" % "org.osgi.util.promise" % "1.1.1")
         .withBundle("org.osgi" % "org.osgi.util.function" % "1.1.0")
